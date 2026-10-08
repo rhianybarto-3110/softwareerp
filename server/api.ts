@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { Database } from './db';
+import { Database } from './db.ts';
 
 export function createApiRouter(): express.Router {
   const router = express.Router();

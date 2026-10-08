@@ -1,13 +1,14 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import express from 'express';
 import { defineConfig, Plugin } from 'vite';
-import { createApiRouter } from './server/api.ts';
 
 const apiPlugin = (): Plugin => ({
   name: 'api-server-middleware',
-  configureServer(server) {
+  apply: 'serve',
+  async configureServer(server) {
+    const express = (await import('express')).default;
+    const { createApiRouter } = await import('./server/api.ts');
     const app = express();
     app.use('/api', createApiRouter());
     server.middlewares.use(app);
@@ -23,10 +24,7 @@ export default defineConfig(() => {
       },
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };
