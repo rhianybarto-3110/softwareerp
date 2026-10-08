@@ -1,0 +1,6 @@
+{
+  "name": "NexusERP - Gestão da Produção e Operações",
+  "description": "Sistema ERP para pequenas indústrias e empresas com gestão de fichas técnicas, matérias-primas, capacidade produtiva, pedidos e ordens de produção.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
