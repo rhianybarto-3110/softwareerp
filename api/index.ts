@@ -1,5 +1,5 @@
 import express from 'express';
-import { createApiRouter } from '../server/api';
+import { createApiRouter } from '../server/api.ts';
 
 const app = express();
 app.use(express.json());
